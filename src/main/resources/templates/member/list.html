@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Insert title here</title>
+</head>
+<body>
+<h1>회원목록</h1>
+<form action="/member/remove">
+<ol>
+  <!--
+  "dto:${list}"에 list를
+  MemberController에 memberList() { mv.addObject("list", list); } "list"와 일치시킨다
+  dto는 변수 이름
+  -->
+  <li th:each="dto:${list}">
+    <input type="radio" name="id" th:value="${dto.id}" />
+    <a th:href="@{/member/detail(id = ${dto.id})}">
+      <span th:text="${dto.id}"></span>
+    </a>
+  </li>
+</ol>
+  <input type="submit" value="삭제" id="deleteButton" />
+</form>
+</body>
+</html>
